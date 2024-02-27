@@ -109,7 +109,6 @@
             "group": 1,
             "is_manually_managed": false,
             "is_public": true,
-			"is_paper": false,
             "license": null,
             "memory_limit": 65536,
             "name": "A Plus B",
