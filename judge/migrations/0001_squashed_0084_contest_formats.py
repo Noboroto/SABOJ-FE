@@ -343,7 +343,6 @@ class Migration(migrations.Migration):
                 ('points', models.FloatField(verbose_name='points')),
                 ('partial', models.BooleanField(default=False, verbose_name='allows partial points')),
                 ('is_public', models.BooleanField(db_index=True, default=False, verbose_name='publicly visible')),
-                ('is_paper', models.BooleanField(db_index=True, default=False, verbose_name='paper problem')),
                 ('is_manually_managed', models.BooleanField(db_index=True, default=False, help_text='Whether judges should be allowed to manage data or not', verbose_name='manually managed')),
                 ('date', models.DateTimeField(blank=True, db_index=True, help_text="Doesn't have the magic ability to auto-publish due to backward compatibility.", null=True, verbose_name='date of publishing')),
                 ('og_image', models.CharField(blank=True, max_length=150, verbose_name='OpenGraph image')),
