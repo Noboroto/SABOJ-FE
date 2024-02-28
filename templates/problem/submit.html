@@ -107,68 +107,25 @@
                         name: 'open',
                         bindKey: {win: 'Ctrl-O', mac: 'Command-O'},
                         exec: function () {
-							alert('open command');
                             $('#file_select').click();
                         }
                     });
-
-
-                    editor.commands.addCommand({
-                        name: 'copy',
-                        bindKey: {win: 'Ctrl-C', mac: 'Command-C'},
-                        exec: function () {
-							alert('copy command')
-                        }
-                    });
-
-					editor.commands.addCommand({
-						name: 'cut',
-						bindKey: {win: 'Ctrl-X', mac: 'Command-X'},
-						exec: function () {
-							alert('cut command')
-						}
-					});
-
-					editor.commands.addCommand({
-						name: 'paste',
-						bindKey: {win: 'Ctrl-V', mac: 'Command-V'},
-						exec: function () {
-							alert('paste command')
-						}
-					});
                     editor.getSession().setUseWrapMode(true);
                     editor.setFontSize(14);
                     editor.setPrintMarginColumn(100);
                     editor.focus();
 
-					editor.container.addEventListener('copy', function (e) {
-						alert('copy container')
+					editor.container.removeEventListener('copy', function(e) {
+						e.preventDefault();
+						return false;
 					});
-					editor.container.addEventListener('cut', function (e) {
-						alert('cut container')
+					editor.container.removeEventListener('cut', function(e) {
+						e.preventDefault();
+						return false;
 					});
-					editor.container.addEventListener('paste', function (e) {
-						alert('paste container')
-					});
-
-					editor.addEventListener('copy', function (e) {
-						alert('copy addEventListener')
-					});
-					editor.addEventListener('cut', function (e) {
-						alert('cut addEventListener')
-					});
-					editor.addEventListener('paste', function (e) {
-						alert('paste addEventListener')
-					});
-
-					editor.on('copy', function (e) {
-						alert('copy on')
-					});
-					editor.on('cut', function (e) {
-						alert('cut on')
-					});
-					editor.on('paste', function (e) {
-						alert('paste on')
+					editor.container.removeEventListener('paste', function(e) {
+						e.preventDefault();
+						return false;
 					});
 
                     $(editor.container).on('dragover', function (e) {
