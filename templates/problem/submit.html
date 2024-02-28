@@ -166,10 +166,10 @@
                                 $('#file-submit').addClass('hidden');
                             }
                             
-                            rootEditor.container.addEventListener('drop', reloadWhenAction);
-                            rootEditor.container.addEventListener('copy', reloadWhenAction);
-                            rootEditor.container.addEventListener('cut', reloadWhenAction);
-                            rootEditor.container.addEventListener('paste', reloadWhenAction);
+                            $('#editor')addEventListener('drop', reloadWhenAction);
+                            $('#editor')addEventListener('copy', reloadWhenAction);
+                            $('#editor')addEventListener('cut', reloadWhenAction);
+                            $('#editor')addEventListener('paste', reloadWhenAction);
                         }
                     } else {
                         if (!$('#paper_submit').hasClass('hidden')) {
@@ -178,10 +178,10 @@
                             if ($('#file-submit').hasClass('hidden')) {
                                 $('#file-submit').removeClass('hidden');
                             }
-                            rootEditor.container.removeEventListener('drop', reloadWhenAction);
-                            rootEditor.container.removeEventListener('copy', reloadWhenAction);
-                            rootEditor.container.removeEventListener('cut', reloadWhenAction);
-                            rootEditor.container.removeEventListener('paste', reloadWhenAction);
+                            $('#editor')removeEventListener('drop', reloadWhenAction);
+                            $('#editor')removeEventListener('copy', reloadWhenAction);
+                            $('#editor')removeEventListener('cut', reloadWhenAction);
+                            $('#editor')removeEventListener('paste', reloadWhenAction);
                         }
                     }
                 };
