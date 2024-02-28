@@ -2751,7 +2751,7 @@ msgstr ""
 
 #: judge/models/runtime.py:48
 msgid "File-only language"
-msgstr ""
+msgstr "Paper-format only language"
 
 #: judge/models/runtime.py:49
 msgid "If this language is submitted using file or not"

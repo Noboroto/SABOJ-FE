@@ -2859,7 +2859,7 @@ msgstr "Phần mở rộng tập tin mã nguồn, ví dụ như, \"py\" hay \"cp
 
 #: judge/models/runtime.py:48
 msgid "File-only language"
-msgstr ""
+msgstr "Bài nộp code giấy"
 
 #: judge/models/runtime.py:49
 msgid "If this language is submitted using file or not"
