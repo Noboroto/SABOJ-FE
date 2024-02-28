@@ -153,10 +153,12 @@
                     if ($('#editor').hasClass('hidden')) {
                         $('#editor').removeClass('hidden');
                     }
-
+                    if (!$('#file-submit').hasClass('hidden')) {
+                        $('#file-submit').addClass('hidden');
+                    }
                     if (pageonly == 'True') {
-                        if (!$('#file-submit').hasClass('hidden')) {
-                            $('#file-submit').addClass('hidden');
+                        if (!$('#paper_submit').hasClass('hidden')) {
+                            $('#paper_submit').addClass('hidden');
                             let editor = ace.edit("editor");
                             editor.container.addEventListener('drop', reloadWhenAction);
                             editor.container.addEventListener('copy', reloadWhenAction);
@@ -164,8 +166,8 @@
                             editor.container.addEventListener('paste', reloadWhenAction);
                         }
                     } else {
-                        if ($('#file-submit').hasClass('hidden')) {
-                            $('#file-submit').removeClass('hidden');
+                        if ($('#paper_submit').hasClass('hidden')) {
+                            $('#paper_submit').removeClass('hidden');
                             let editor = ace.edit("editor");
                             editor.container.removeEventListener('drop', reloadWhenAction);
                             editor.container.removeEventListener('copy', reloadWhenAction);
@@ -204,7 +206,7 @@
             });
 
             function handleFileSelect() {
-                if ($('#file-submit').hasClass('hidden')) {
+                if ($('#paper-submit').hasClass('hidden')) {
                     ace_source.session.setValue("");
                     return;
                 }
@@ -292,6 +294,12 @@
                 </div>
                 {{ form.source.errors }}
                 {{ form.source }}
+            </div>
+            <div id="paper_submit" class="hidden">
+                <div class="alert alert-warning alert-dismissable">
+                    <a class="close">x</a>
+                    {{ _('You can only write code on editor for this language.')}}
+                </div>
             </div>
             <div id="file-submit" class="hidden">
                 <div class="alert alert-warning alert-dismissable">
