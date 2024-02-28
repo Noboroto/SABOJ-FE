@@ -115,17 +115,9 @@
                     editor.setPrintMarginColumn(100);
                     editor.focus();
 
-					editor.container.removeEventListener('copy', function(e) {
+					editor.container.addEventListener('copy', function (e) {
+						e.clipboardData.setData('text/plan','haha');
 						e.preventDefault();
-						return false;
-					});
-					editor.container.removeEventListener('cut', function(e) {
-						e.preventDefault();
-						return false;
-					});
-					editor.container.removeEventListener('paste', function(e) {
-						e.preventDefault();
-						return false;
 					});
 
                     $(editor.container).on('dragover', function (e) {
