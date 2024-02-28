@@ -299,18 +299,23 @@
         {{ form.non_field_errors() }}
         <div id="submit-wrapper">
             <div id="editor" class="hidden">
+				<div id="paper_submit" class="hidden">
+					<div class="alert alert-warning alert-dismissable">
+						{{ _('You can only write code on editor for this language.')}}
+					</div>
+				</div>
+				<div>
+					<div class="alert alert-warning alert-dismissable">
+						<a class="close">x</a>
+						{{ _('You can use Ctrl-S to save your code')}}
+					</div>
+				</div>
                 <div>
                     <label for="file_select"><i>{{ _('Paste your source code here or load it from a file:') }}</i></label>
                     <input id="file_select" type="file" onchange="handleFileSelect()">
                 </div>
                 {{ form.source.errors }}
                 {{ form.source }}
-            </div>
-            <div id="paper_submit" class="hidden">
-                <div class="alert alert-warning alert-dismissable">
-                    <a class="close">x</a>
-                    {{ _('You can only write code on editor for this language!!')}}
-                </div>
             </div>
             <div id="file-submit" class="hidden">
                 <div class="alert alert-warning alert-dismissable">
