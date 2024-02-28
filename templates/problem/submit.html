@@ -215,7 +215,7 @@
             });
 
             function handleFileSelect() {
-                if ($('#paper_submit').hasClass('hidden')) {
+                if (!$('#paper_submit').hasClass('hidden')) {
                     ace_source.session.setValue("");
                     return;
                 }
@@ -307,7 +307,7 @@
             <div id="paper_submit" class="hidden">
                 <div class="alert alert-warning alert-dismissable">
                     <a class="close">x</a>
-                    {{ _('You can only write code on editor for this language.')}}
+                    {{ _('You can only write code on editor for this language!!')}}
                 </div>
             </div>
             <div id="file-submit" class="hidden">
