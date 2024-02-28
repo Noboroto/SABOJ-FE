@@ -217,16 +217,15 @@
             });
 
             function handleFileSelect() {
-                if (!$('#paper_submit').hasClass('hidden')) {
-                    ace_source.session.setValue("");
-                    return;
-                }
+ 
                 var file = $('#file_select')[0].files[0];
                 if (file && window.FileReader) {
                     var reader = new FileReader();
                     reader.onload = function () {
-                        ace_source.session.setValue(reader.result);
-
+						if (!$('#paper_submit').hasClass('hidden')) {
+							ace_source.session.setValue("");
+						} 
+						else ace_source.session.setValue(reader.result);
                         if (file.name.search('.') != -1) {
                             var ext = file.name.split('.').pop();
                             var languages = $('#id_language')[0].options;
