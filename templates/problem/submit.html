@@ -1,8 +1,10 @@
 {% extends "base.html" %}
-<script type="text/javascript">
-	console.log("Hello Template")
-</script>
+
 {% block js_media %}
+    <script>
+        let d = new Date();
+        alert("Today's date is " + d);
+    </script>
     <script type="text/javascript" src="{{ ACE_URL }}/ace.js"></script>
     {{ form.media.js }}
     {% compress js %}
