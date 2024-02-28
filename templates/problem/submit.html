@@ -164,7 +164,7 @@
                             $('#paper_submit').removeClass('hidden');
 
 							if (!$('#div_file_select').hasClass('hidden')) {
-                                $('div_file_select').addClass('hidden');
+                                $('#div_file_select').addClass('hidden');
                             }
                             
                             $('#editor').on('drop', reloadWhenAction);
@@ -176,8 +176,8 @@
                         if (!$('#paper_submit').hasClass('hidden')) {
                             $('#paper_submit').addClass('hidden');
 
-                            if ($('div_file_select').hasClass('hidden')) {
-                                $('div_file_select').removeClass('hidden');
+                            if ($('#div_file_select').hasClass('hidden')) {
+                                $('#div_file_select').removeClass('hidden');
                             }
 							
                             $('#editor').off('drop', reloadWhenAction);
