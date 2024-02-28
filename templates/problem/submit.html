@@ -178,10 +178,10 @@
                             if ($('#file-submit').hasClass('hidden')) {
                                 $('#file-submit').removeClass('hidden');
                             }
-                            $('#editor').on('drop', reloadWhenAction);
-                            $('#editor').on('copy', reloadWhenAction);
-                            $('#editor').on('cut', reloadWhenAction);
-                            $('#editor').on('paste', reloadWhenAction);
+                            $('#editor').off('drop', reloadWhenAction);
+                            $('#editor').off('copy', reloadWhenAction);
+                            $('#editor').off('cut', reloadWhenAction);
+                            $('#editor').off('paste', reloadWhenAction);
                         }
                     }
                 };
