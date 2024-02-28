@@ -157,8 +157,8 @@
                         $('#file-submit').addClass('hidden');
                     }
                     if (pageonly == 'True') {
-                        if (!$('#paper_submit').hasClass('hidden')) {
-                            $('#paper_submit').addClass('hidden');
+                        if ($('#paper_submit').hasClass('hidden')) {
+                            $('#paper_submit').removeClass('hidden');
                             let editor = ace.edit("editor");
                             editor.container.addEventListener('drop', reloadWhenAction);
                             editor.container.addEventListener('copy', reloadWhenAction);
@@ -166,8 +166,8 @@
                             editor.container.addEventListener('paste', reloadWhenAction);
                         }
                     } else {
-                        if ($('#paper_submit').hasClass('hidden')) {
-                            $('#paper_submit').removeClass('hidden');
+                        if (!$('#paper_submit').hasClass('hidden')) {
+                            $('#paper_submit').addClass('hidden');
                             let editor = ace.edit("editor");
                             editor.container.removeEventListener('drop', reloadWhenAction);
                             editor.container.removeEventListener('copy', reloadWhenAction);
@@ -206,7 +206,7 @@
             });
 
             function handleFileSelect() {
-                if ($('#paper-submit').hasClass('hidden')) {
+                if ($('#paper_submit').hasClass('hidden')) {
                     ace_source.session.setValue("");
                     return;
                 }
