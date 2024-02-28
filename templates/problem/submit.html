@@ -9,6 +9,8 @@
                 location.reload();
                 action.preventDefault();
             };
+
+            var rootEditor
             
             $(function () {
                 function format(state) {
@@ -101,6 +103,7 @@
 
                 $('#ace_source').on('ace_load', function (e, editor) {
                     update_language_template();
+                    rootEditor = editor;
                     editor.commands.addCommand({
                         name: 'save',
                         bindKey: {win: 'Ctrl-S', mac: 'Command-S'},
@@ -159,20 +162,26 @@
                     if (pageonly == 'True') {
                         if ($('#paper_submit').hasClass('hidden')) {
                             $('#paper_submit').removeClass('hidden');
-                            let editor = ace.edit("editor");
-                            editor.container.addEventListener('drop', reloadWhenAction);
-                            editor.container.addEventListener('copy', reloadWhenAction);
-                            editor.container.addEventListener('cut', reloadWhenAction);
-                            editor.container.addEventListener('paste', reloadWhenAction);
+                            if (!$('#file-submit').hasClass('hidden')) {
+                                $('#file-submit').addClass('hidden');
+                            }
+                            
+                            rootEditor.container.addEventListener('drop', reloadWhenAction);
+                            rootEditor.container.addEventListener('copy', reloadWhenAction);
+                            rootEditor.container.addEventListener('cut', reloadWhenAction);
+                            rootEditor.container.addEventListener('paste', reloadWhenAction);
                         }
                     } else {
                         if (!$('#paper_submit').hasClass('hidden')) {
                             $('#paper_submit').addClass('hidden');
-                            let editor = ace.edit("editor");
-                            editor.container.removeEventListener('drop', reloadWhenAction);
-                            editor.container.removeEventListener('copy', reloadWhenAction);
-                            editor.container.removeEventListener('cut', reloadWhenAction);
-                            editor.container.removeEventListener('paste', reloadWhenAction);
+
+                            if ($('#file-submit').hasClass('hidden')) {
+                                $('#file-submit').removeClass('hidden');
+                            }
+                            rootEditor.container.removeEventListener('drop', reloadWhenAction);
+                            rootEditor.container.removeEventListener('copy', reloadWhenAction);
+                            rootEditor.container.removeEventListener('cut', reloadWhenAction);
+                            rootEditor.container.removeEventListener('paste', reloadWhenAction);
                         }
                     }
                 };
