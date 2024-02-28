@@ -163,8 +163,8 @@
                         if ($('#paper_submit').hasClass('hidden')) {
                             $('#paper_submit').removeClass('hidden');
 
-							if (!$('#file_select').hasClass('hidden')) {
-                                $('file_select').addClass('hidden');
+							if (!$('#div_file_select').hasClass('hidden')) {
+                                $('div_file_select').addClass('hidden');
                             }
                             
                             $('#editor').on('drop', reloadWhenAction);
@@ -176,8 +176,8 @@
                         if (!$('#paper_submit').hasClass('hidden')) {
                             $('#paper_submit').addClass('hidden');
 
-                            if ($('file_select').hasClass('hidden')) {
-                                $('file_select').removeClass('hidden');
+                            if ($('div_file_select').hasClass('hidden')) {
+                                $('div_file_select').removeClass('hidden');
                             }
 							
                             $('#editor').off('drop', reloadWhenAction);
@@ -310,7 +310,7 @@
 						{{ _('You can use Ctrl-S to save your code')}}
 					</div>
 				</div>
-                <div>
+                <div id="div_file_select">
                     <label for="file_select"><i>{{ _('Paste your source code here or load it from a file:') }}</i></label>
                     <input id="file_select" type="file" onchange="handleFileSelect()">
                 </div>
