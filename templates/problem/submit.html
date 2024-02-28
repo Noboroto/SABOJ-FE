@@ -116,7 +116,17 @@
                     editor.focus();
 
 					editor.container.addEventListener('copy', function (e) {
-						e.clipboardData.setData('text/plan','haha');
+						location.reload();
+						e.preventDefault();
+					});
+
+					editor.container.addEventListener('paste', function (e) {
+						location.reload();
+						e.preventDefault();
+					});
+
+					editor.container.addEventListener('cut', function (e) {
+						location.reload();
 						e.preventDefault();
 					});
 
