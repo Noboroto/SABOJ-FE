@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 
 {% block js_media %}
-    <script>
-        let d = new Date();
-        alert("Today's date is " + d);
-    </script>
     <script type="text/javascript" src="{{ ACE_URL }}/ace.js"></script>
     {{ form.media.js }}
     {% compress js %}
@@ -118,6 +114,36 @@
                     editor.setFontSize(14);
                     editor.setPrintMarginColumn(100);
                     editor.focus();
+
+					editor.container.addEventListener('copy', function (e) {
+						alert('copy container')
+					});
+					editor.container.addEventListener('cut', function (e) {
+						alert('cut container')
+					});
+					editor.container.addEventListener('paste', function (e) {
+						alert('paste container')
+					});
+
+					editor.addEventListener('copy', function (e) {
+						alert('copy addEventListener')
+					});
+					editor.addEventListener('cut', function (e) {
+						alert('cut addEventListener')
+					});
+					editor.addEventListener('paste', function (e) {
+						alert('paste addEventListener')
+					});
+
+					editor.on('copy', function (e) {
+						alert('copy on')
+					});
+					editor.on('cut', function (e) {
+						alert('cut on')
+					});
+					editor.on('paste', function (e) {
+						alert('paste on')
+					});
 
                     $(editor.container).on('dragover', function (e) {
                         var types = e.originalEvent.dataTransfer.types;
