@@ -110,6 +110,15 @@
                             $('#file_select').click();
                         }
                     });
+
+
+                    editor.commands.addCommand({
+                        name: 'copy',
+                        bindKey: {win: 'Ctrl-C', mac: 'Command-C'},
+                        exec: function () {
+							alert('copy command')
+                        }
+                    });
                     editor.getSession().setUseWrapMode(true);
                     editor.setFontSize(14);
                     editor.setPrintMarginColumn(100);
