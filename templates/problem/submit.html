@@ -162,8 +162,9 @@
                     if (pageonly == 'True') {
                         if ($('#paper_submit').hasClass('hidden')) {
                             $('#paper_submit').removeClass('hidden');
-                            if (!$('#file-submit').hasClass('hidden')) {
-                                $('#file-submit').addClass('hidden');
+
+							if (!$('#file_select').hasClass('hidden')) {
+                                $('file_select').addClass('hidden');
                             }
                             
                             $('#editor').on('drop', reloadWhenAction);
@@ -175,9 +176,10 @@
                         if (!$('#paper_submit').hasClass('hidden')) {
                             $('#paper_submit').addClass('hidden');
 
-                            if ($('#file-submit').hasClass('hidden')) {
-                                $('#file-submit').removeClass('hidden');
+                            if ($('file_select').hasClass('hidden')) {
+                                $('file_select').removeClass('hidden');
                             }
+							
                             $('#editor').off('drop', reloadWhenAction);
                             $('#editor').off('copy', reloadWhenAction);
                             $('#editor').off('cut', reloadWhenAction);
