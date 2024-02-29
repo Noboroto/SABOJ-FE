@@ -27,34 +27,33 @@ def _post_update_submission(submission, done=False):
 
 
 def judge_request(packet, reply=True):
-    try:
-        sock = socket.create_connection(settings.BRIDGED_DJANGO_CONNECT or
-                                        settings.BRIDGED_DJANGO_ADDRESS[0])
+	
+    print (str(settings.BRIDGED_DJANGO_CONNECT))
+    print (str(settings.BRIDGED_DJANGO_ADDRESS[0]))
+	sock = socket.create_connection(settings.BRIDGED_DJANGO_CONNECT or
+									settings.BRIDGED_DJANGO_ADDRESS[0])
 
-        output = json.dumps(packet, separators=(',', ':'))
-        output = zlib.compress(output.encode('utf-8'))
-        writer = sock.makefile('wb')
-        writer.write(size_pack.pack(len(output)))
-        writer.write(output)
-        writer.close()
+	output = json.dumps(packet, separators=(',', ':'))
+	output = zlib.compress(output.encode('utf-8'))
+	writer = sock.makefile('wb')
+	writer.write(size_pack.pack(len(output)))
+	writer.write(output)
+	writer.close()
 
-        if reply:
-            reader = sock.makefile('rb', -1)
-            input = reader.read(size_pack.size)
-            if not input:
-                raise ValueError('Judge did not respond')
-            length = size_pack.unpack(input)[0]
-            input = reader.read(length)
-            if not input:
-                raise ValueError('Judge did not respond')
-            reader.close()
-            sock.close()
+	if reply:
+		reader = sock.makefile('rb', -1)
+		input = reader.read(size_pack.size)
+		if not input:
+			raise ValueError('Judge did not respond')
+		length = size_pack.unpack(input)[0]
+		input = reader.read(length)
+		if not input:
+			raise ValueError('Judge did not respond')
+		reader.close()
+		sock.close()
 
-            result = json.loads(zlib.decompress(input).decode('utf-8'))
-            return result	
-    except:
-        print (settings.BRIDGED_DJANGO_CONNECT)
-        print (settings.BRIDGED_DJANGO_ADDRESS[0])
+		result = json.loads(zlib.decompress(input).decode('utf-8'))
+		return result
 
 
 def judge_submission(submission, rejudge=False, batch_rejudge=False, judge_id=None):
