@@ -27,30 +27,37 @@ def _post_update_submission(submission, done=False):
 
 
 def judge_request(packet, reply=True):
-	sock = socket.create_connection(settings.BRIDGED_DJANGO_CONNECT or
-									settings.BRIDGED_DJANGO_ADDRESS[0])
+    try:
+        sock = socket.create_connection(settings.BRIDGED_DJANGO_CONNECT or
+                                        settings.BRIDGED_DJANGO_ADDRESS[0])
 
-	output = json.dumps(packet, separators=(',', ':'))
-	output = zlib.compress(output.encode('utf-8'))
-	writer = sock.makefile('wb')
-	writer.write(size_pack.pack(len(output)))
-	writer.write(output)
-	writer.close()
+        output = json.dumps(packet, separators=(',', ':'))
+        output = zlib.compress(output.encode('utf-8'))
+        writer = sock.makefile('wb')
+        writer.write(size_pack.pack(len(output)))
+        writer.write(output)
+        writer.close()
 
-	if reply:
-		reader = sock.makefile('rb', -1)
-		input = reader.read(size_pack.size)
-		if not input:
-			raise ValueError('Judge did not respond')
-		length = size_pack.unpack(input)[0]
-		input = reader.read(length)
-		if not input:
-			raise ValueError('Judge did not respond')
-		reader.close()
-		sock.close()
+        if reply:
+            reader = sock.makefile('rb', -1)
+            input = reader.read(size_pack.size)
+            if not input:
+                raise ValueError('Judge did not respond')
+            length = size_pack.unpack(input)[0]
+            input = reader.read(length)
+            if not input:
+                raise ValueError('Judge did not respond')
+            reader.close()
+            sock.close()
 
-		result = json.loads(zlib.decompress(input).decode('utf-8'))
-		return result
+            result = json.loads(zlib.decompress(input).decode('utf-8'))
+            return result
+    except socket.error as e:
+        print(f"Socket error: {e}")
+    except ValueError as e:
+        print(f"Value error: {e}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
 
 
 def judge_submission(submission, rejudge=False, batch_rejudge=False, judge_id=None):
