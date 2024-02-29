@@ -643,9 +643,9 @@ DATABASES = {
 ENABLE_FTS = False
 
 # Bridged configuration
-BRIDGED_JUDGE_ADDRESS = [('host.docker.internal', 9999)]
+BRIDGED_JUDGE_ADDRESS = [('127.0.0.1', 9999)]
 BRIDGED_JUDGE_PROXIES = None
-BRIDGED_DJANGO_ADDRESS = [('host.docker.internal', 9998)]
+BRIDGED_DJANGO_ADDRESS = [('127.0.0.1', 9998)]
 BRIDGED_DJANGO_CONNECT = None
 
 # Event Server configuration
